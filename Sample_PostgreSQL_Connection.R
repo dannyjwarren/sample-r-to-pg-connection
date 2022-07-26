@@ -1,5 +1,5 @@
 # Example to view entire contents of a table
-# Restult comes though as 'query_result'
+# Result comes though as 'query_result'
 
 library(DBI)
 
