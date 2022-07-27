@@ -1,18 +1,21 @@
-# Example to view entire contents of a table
+# Example to view entire contents of a PostgreSQL table
 # Result comes though as 'query_result'
 
 library(DBI)
 
+# Input connection parameters
+# These can be stored externally in a .Renviron file for enhanced security
 database_args<-list(
   Driver = "PostgreSQL Unicode",
   Server = "XXXXXXXX",
   Database = "XXXXXXXX",
-  Port = 5433,
+  Port = XXXXXXX,
   UID = "XXXXXXXX",
   PWD = "XXXXXXXX",
   Trusted_Connection = "True"
 )
 
+# Open a database connection
 con <- DBI::dbConnect(
   odbc::odbc(),
   Driver = database_args$Driver,
@@ -24,7 +27,9 @@ con <- DBI::dbConnect(
   Trusted_Connection = database_args$Trusted_Connection
 )
 
-
+# Run a query using the DBI dbGetQuery function
+# When referencing a PostgreSQL table in a query, the standard syntax is schema_name.table_name
 query_result <- dbGetQuery(con, "SELECT * FROM creel.angler_type_lut;")
 
+# Close connection
 dbDisconnect(con)
